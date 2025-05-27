@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label"
 import { CopyButton } from "./ui/copy-button"
 
 export function Fund() {
-    const wallet = "5RuNYM992Kfky2DqDzgyuu5n5CBxUBVKh4KKdfVqF2Gc"
+    const wallet = "88pUr1zHW2hhdbSvhkreWfAVp8wMtwq4TAizeBUUiLQ9"
     return (
         <Dialog>
             <DialogTrigger asChild>
