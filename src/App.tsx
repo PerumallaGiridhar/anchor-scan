@@ -2,12 +2,18 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "./components/mode-toggle"
 
 import { Anchor } from 'lucide-react';
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Fund } from "./components/fund";
 import { Feedback } from "./components/feedback";
 import { SelectNetwork } from "./components/select-network";
+import { useEffect } from "react";
 
 function App() {
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate("/home")
+  }, [])
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
