@@ -13,8 +13,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { CopyButton } from "./ui/copy-button"
 
 export function Feedback() {
+    const email = "ravigiridhar786@gmail.com"
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -35,14 +38,11 @@ export function Feedback() {
                         <Input
                             id="email"
                             type="email"
-                            defaultValue="ravigiridhar786@gmail.com"
+                            defaultValue={email}
                             readOnly
                         />
                     </div>
-                    <Button type="submit" size="sm" className="px-3">
-                        <span className="sr-only">Copy</span>
-                        <Copy />
-                    </Button>
+                    <CopyButton text={email}/>
                 </div>
                 <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>

@@ -13,8 +13,10 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { CopyButton } from "./ui/copy-button"
 
 export function Fund() {
+    const wallet = "5RuNYM992Kfky2DqDzgyuu5n5CBxUBVKh4KKdfVqF2Gc"
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -34,14 +36,11 @@ export function Fund() {
                         </Label>
                         <Input
                             id="link"
-                            defaultValue="5RuNYM992Kfky2DqDzgyuu5n5CBxUBVKh4KKdfVqF2Gc"
+                            defaultValue={wallet}
                             readOnly
                         />
                     </div>
-                    <Button type="submit" size="sm" className="px-3">
-                        <span className="sr-only">Copy</span>
-                        <Copy />
-                    </Button>
+                    <CopyButton text={wallet}/>
                 </div>
                 <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>
