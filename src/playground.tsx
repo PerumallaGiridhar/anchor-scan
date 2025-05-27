@@ -1,21 +1,11 @@
-import { Input } from "./components/ui/input"
+
 import { Label } from "./components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue
-} from "./components/ui/select"
 import { Button } from "./components/ui/button"
 import { Edit, FilePenLine, FileSearch, Share, Signature, Trash2 } from "lucide-react"
 import { useParams } from "react-router-dom"
@@ -67,7 +57,7 @@ export const Playground = () => {
     const hasSigned = useSignerStore((s) => s.hasSigned)
 
     const { address } = useParams<{ address: string }>()
-    const defaultValue = JSON.parse(localStorage.getItem(`idl-${address}`)!)
+    // const defaultValue = JSON.parse(localStorage.getItem(`idl-${address}`)!)
 
     const instructions = useInstructionStore((s) => s.instructions)
 

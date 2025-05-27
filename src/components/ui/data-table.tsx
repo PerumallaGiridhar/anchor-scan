@@ -14,7 +14,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { DataTablePagination } from "@/components/ui/paginated-table"
+// import { DataTablePagination } from "@/components/ui/paginated-table"
 import { ScrollableTableWrapper } from "@/components/ui/scroll-table"
 import React from "react"
 import { isEqual } from "lodash"

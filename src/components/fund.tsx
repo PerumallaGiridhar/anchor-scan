@@ -1,4 +1,4 @@
-import { CircleDollarSign, Copy } from "lucide-react"
+import { CircleDollarSign } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {

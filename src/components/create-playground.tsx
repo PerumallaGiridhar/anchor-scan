@@ -83,7 +83,7 @@ export function CreatePlayground() {
                         <FormField
                             control={form.control}
                             name="idl"
-                            render={({ field }) => (
+                            render={() => (
                                 <FormItem className="w-full">
                                     <div className="flex flex-row w-full gap-4 py-4 items-start">
                                         <FormLabel className="mt-3">IDL</FormLabel>
