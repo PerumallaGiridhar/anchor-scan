@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-1/2 text-center p-4">
-                  No results.
+                  No results. Select a account type
                 </TableCell>
               </TableRow>
             )}

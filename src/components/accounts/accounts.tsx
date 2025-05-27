@@ -158,7 +158,7 @@ export const Accounts = () => {
                     }}
                 >
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select Account" />
+                        <SelectValue placeholder="Select Account Type" />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>

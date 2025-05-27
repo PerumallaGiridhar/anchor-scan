@@ -34,6 +34,8 @@ export function Addinstruction() {
 
     const idl: Idl = JSON.parse(localStorage.getItem(`idl-${address}`)!)
 
+    console.log(idl)
+
     const instructionMap = Object.fromEntries(
         idl.instructions.map((ix) => [
             ix.name,

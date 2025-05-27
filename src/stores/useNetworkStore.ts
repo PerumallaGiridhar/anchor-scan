@@ -18,7 +18,7 @@ interface NetworkStore {
 }
 
 export const useNetworkStore = create<NetworkStore>((set, get) => ({
-  network: "localnet",
+  network: "devnet",
   customRpcUrl: "http://127.0.0.1:8899",
   options: [
     { label: "Mainnet Beta", value: "mainnet-beta" },

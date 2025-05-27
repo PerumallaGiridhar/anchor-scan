@@ -101,7 +101,7 @@ export const Playground = () => {
                     </Button>
                 </div>
             </div>
-            <Tabs defaultValue="Account" className="w-full">
+            <Tabs defaultValue="account" className="w-full">
                 <TabsList className="grid w-1/2 grid-cols-3">
                     <TabsTrigger value="account">Fetch Accounts</TabsTrigger>
                     <TabsTrigger value="transactions">Build Transactions</TabsTrigger>
