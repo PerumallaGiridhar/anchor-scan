@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowDown, ArrowUp } from "lucide-react"
 import { Button } from "./button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
+import { Spinner } from "./spinner"
 
 export const ScrollableTableWrapper = forwardRef<
   HTMLDivElement, { children: React.ReactNode, isFetching?: boolean }>(({ children, isFetching }, ref) => {
@@ -75,8 +76,11 @@ export const ScrollableTableWrapper = forwardRef<
         </div>
         {isFetching && (
           <>
-          <div className="absolute inset-0 z-10 flex rounded-lg items-center justify-center bg-white/50" />
+          {/* <div className="absolute inset-0 z-10 flex rounded-lg items-center justify-center bg-white/50" /> */}
           {/* <SpinnerIcon className="absolute inset-1/2 z-10 flex items-center justify-center animate-spin" /> */}
+          <div className="absolute inset-0  z-10 flex rounded-lg items-center justify-center">
+            <Spinner/>
+          </div>
           </>
         )}
         <Tooltip>

@@ -9,9 +9,9 @@ import { DataTable } from "@/components/ui/data-table"
 import { Input } from "../ui/input"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select"
 import { columns, ProgramAccounts } from "./columns"
-import { ColumnFiltersState, getCoreRowModel, useReactTable} from "@tanstack/react-table"
+import { ColumnFiltersState, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Connection, PublicKey } from "@solana/web3.js"
 import { useNetworkStore } from "@/stores/useNetworkStore"
 import { useParams } from "react-router-dom"
@@ -27,6 +27,7 @@ import bs58 from "bs58"
 const fetchProgamAccountsData = async (
     connection: Connection, idl: Idl, selectedAccountType: string, columnFilters: ColumnFiltersState
 ): Promise<{ rows: ProgramAccounts[] }> => {
+
     const idlAccount = idl.accounts?.filter((acc) => acc.name === selectedAccountType)
     let discriminator: number[] = []
     if (idlAccount) {
@@ -37,9 +38,8 @@ const fetchProgamAccountsData = async (
     let filter = columnFilters.find((fil) => fil.id === "pubkey")
     let searchAddress: string = filter?.value as string
 
-    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&", searchAddress)
 
-    if (searchAddress) { 
+    if (searchAddress) {
         const pubkey = new PublicKey(searchAddress)
         const accountInfo = await connection.getAccountInfo(pubkey)
         if (accountInfo) {
@@ -135,19 +135,25 @@ export const Accounts = () => {
         placeholderData: keepPreviousData,
     })
     const defaultData = React.useMemo(() => [], [])
-    
+
     const table = useReactTable({
         data: dataQuery.data?.rows ?? defaultData,
         columns,
         getCoreRowModel: getCoreRowModel(),
         onColumnFiltersChange: setColumnFilters,
-        state: {columnFilters},
+        state: { columnFilters },
         manualFiltering: true,
     })
 
     const [selectedAccount, setSelectedAccount] = useState<ProgramAccounts | null>(null)
     const [selectedAccountType, setSelectedAccountType] = useState("")
-    
+
+    useEffect(() => {
+        if (!selectedAccountType && idl.accounts && idl.accounts.length > 0) {
+            setSelectedAccountType(idl.accounts[0].name)
+        }
+    }, [idl.accounts, selectedAccountType])
+
 
     return (
         <div className="flex flex-col gap-6 w-full h-full py-6">
@@ -156,6 +162,7 @@ export const Accounts = () => {
                     onValueChange={(val) => {
                         setSelectedAccountType(val)
                     }}
+                    value={selectedAccountType}
                 >
                     <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Account Type" />
@@ -171,7 +178,7 @@ export const Accounts = () => {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
-                <Input id="Address" placeholder="enter program account adress" className="w-md rounded-sm" onChange={(e) => table.getColumn("pubkey")?.setFilterValue(e.target.value)}/>
+                <Input id="Address" placeholder="enter program account adress" className="w-md rounded-sm" onChange={(e) => table.getColumn("pubkey")?.setFilterValue(e.target.value)} />
                 <Button variant="secondary" size={"icon"}><Search /></Button>
             </div>
             <ResizablePanelGroup
@@ -182,7 +189,7 @@ export const Accounts = () => {
                     <DataTable columns={columns} table={table} onRowClick={(row) => {
                         console.log(row)
                         setSelectedAccount(row)
-                    }} />
+                    }} isFetching={dataQuery.isFetching} />
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={50}>
